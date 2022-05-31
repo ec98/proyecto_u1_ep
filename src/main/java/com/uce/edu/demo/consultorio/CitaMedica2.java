@@ -7,36 +7,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 //toma el control a traves de un estereotipo Service
-public class CitaMedica {
+public class CitaMedica2 {
 
 	private LocalDateTime fechaCita;
-
-//	@Autowired //(Inyectando atributo)
-//	private Doctor doctor; // referencia atributo this
-//	@Autowired //(Inyectando atributo)
-//	private Paciente paciente;
-
-	//2) mediante el constructor llamo a la variable para inyectar
-	private Doctor doctor; // referencia atributo this
-	private Paciente paciente;
-
 	
-	//2) DI por contructor
-	public CitaMedica(Doctor doctor, Paciente paciente) {
-		this.doctor = doctor; // mediante el constructor llamo a la variable para inyectar
-		this.paciente = paciente;
-	}
+	//3) DI por metodos SET
+	private Doctor doctor; // 3) a su metodo SET le pongo @Autowired
+	private Paciente paciente;// 3) a su metodo SET le pongo @Autowired
 
 	public String agendar(LocalDateTime fechaCita, String nombre, String apellido, int edad, String ciudad,
 			String nombrePaciente, int edadPaciente) {
-
-		// -----------------
-		// this.doctor = new Doctor();
-		// this.paciente = new Paciente();
-		// -------------------
-
-		// hacemos referencia a punto nulo
-		// ejempo: null.setNonbre
 
 		this.doctor.setNombre(nombre);
 		this.doctor.setApellido(apellido);
@@ -50,7 +30,7 @@ public class CitaMedica {
 		this.fechaCita = fechaCita;
 
 		// Se inserta la cita en la base de datos
-		return "Cita agendada";
+		return "Cita agendada 2";
 	}
 
 	// GETTERS AND SETTERS
@@ -65,7 +45,8 @@ public class CitaMedica {
 	public Doctor getDoctor() {
 		return doctor;
 	}
-
+	
+	@Autowired
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
@@ -73,7 +54,8 @@ public class CitaMedica {
 	public Paciente getPaciente() {
 		return paciente;
 	}
-
+	
+	@Autowired
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
