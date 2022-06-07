@@ -1,35 +1,19 @@
 package com.uce.edu.demo;
 
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.operaciones.Fruta;
+import com.uce.edu.demo.modelo.Estudiante;
+import com.uce.edu.demo.service.IEstudianteService;
 
 @SpringBootApplication
 public class ProyectoU1EpApplication implements CommandLineRunner {
 
-	// TALLER TRABAJADO EN CLASE
-
-	// 1) DI por Atributo (Desacoplando)
-//	@Autowired
-//	private CitaMedica cita;
-
-//	@Autowired
-//	private CitaMedica2 cita;
-
-//	@Autowired
-//	private Doctor doctor;
-
-	// TAREA 5
-
-	// 1) DI por Atributo (Desacoplando)
 	@Autowired
-	private Fruta fruta1;
-
+	private IEstudianteService estudianteService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1EpApplication.class, args);
 	}
@@ -37,31 +21,26 @@ public class ProyectoU1EpApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-
-		// TALLER TRABAJADO EN CLASE
-
-//		System.out.println("Mi primer proyecto con Spring Framework");
-//		
-//		String respuesta = this.cita.agendar(LocalDateTime.now(), "Ana", "Lopez", 23, "Guayaquil", "Pablo", 32);
-//		System.out.println(respuesta);
-
-		// TAREA 5
-
-//		System.out.println("1. Realizando ejecucion... DI por atributos");
-//		// Obteniendo respuesta de los atributos inyectados
-//		String respuesta = this.fruta1.entrega(LocalDateTime.now(), "Mediano", 12, "Verde", 10, "Amarillo");
-//		System.out.println(respuesta);
-
-//		System.out.println("2. Realizando ejecucion... DI por constructor");
-//		//Obteniendo respuesta mediante constructor
-//		String respuesta = this.fruta1.entrega(LocalDateTime.now(), "Grande", 32, "Azul", 13, "Verde");
-//		System.out.println(respuesta);
-
-		System.out.println("3. Realizando ejecucion... DI por metodos SET");
-		//Obteniendo respuesta mediante metodo SET de los atributos inyectados
-		String respuesta = this.fruta1.entrega(LocalDateTime.now(), "Pequenio", 6, "Anaranjado", 7, "Blanco");
-		System.out.println(respuesta);
-
+		
+		Estudiante e = new Estudiante();
+		e.setNombre("Edwin");
+		e.setApellido("Piruch");
+		e.setCedula("1725860553");
+		this.estudianteService.ingresarEstudiante(e);
+		
+		Estudiante e1 = new Estudiante();
+		e1.setNombre("Ana");
+		e1.setApellido("Lopez");
+		e1.setCedula("1722992922");
+		this.estudianteService.ingresarEstudiante(e1);
+		
+		//USAR LOS 3 METODOS RESTANTES
+		e.setCedula("1829202222");
+		this.estudianteService.actualizarEstudiante(e);
+		
+		this.estudianteService.buscarporApellido("Piruch");
+		
+		this.estudianteService.borrarEstudiante("1722992922");
 	}
 
 }
