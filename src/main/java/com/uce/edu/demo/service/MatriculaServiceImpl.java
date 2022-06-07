@@ -1,5 +1,6 @@
 package com.uce.edu.demo.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.modelo.Matricula;
@@ -8,18 +9,19 @@ import com.uce.edu.demo.repository.IMatriculaRepository;
 @Service
 public class MatriculaServiceImpl implements IMatriculaService{
 
+	@Autowired
 	private IMatriculaRepository matriculaRepository;
 	
 	@Override
-	public void ingresarMatricula(Matricula m) {
+	public void crearMatricula(Matricula m) {
 		// TODO Auto-generated method stub
-		this.matriculaRepository.insertar(m);
+		this.matriculaRepository.creado(m);
 	}
 
 	@Override
 	public Matricula buscarporMatricula(String matricula) {
 		// TODO Auto-generated method stub
-		return this.matriculaRepository.buscar(matricula);
+		return this.matriculaRepository.buscarporNumero(matricula);
 	}
 
 	@Override

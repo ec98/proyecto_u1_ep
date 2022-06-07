@@ -17,7 +17,7 @@ public class MateriaRepositoryImpl implements IMateriaRepository {
 	@Override
 	public Materia buscar(String materia) {
 		// TODO Auto-generated method stub
-		System.out.println("Se ha buscado en la base el estudiante: " + materia);
+		System.out.println("Se ha buscado en la base la materia: " + materia);
 		Materia e = new Materia();
 		e.setNombre(materia);
 		return e;
@@ -26,7 +26,7 @@ public class MateriaRepositoryImpl implements IMateriaRepository {
 	@Override
 	public void actualizar(Materia e) {
 		// TODO Auto-generated method stub
-		System.out.println("Se ha actualizado en la base el estudiante: " + e);
+		System.out.println("Se ha actualizado en la base la materia: " + e);
 
 	}
 
