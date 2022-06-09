@@ -35,4 +35,49 @@ public class DepositoServiceImpl implements IDepositoService {
 		this.depositoRepository.insertarDeposito(deposito);
 	}
 
+	@Override
+	public Deposito buscarDeposito(String numberCtaDestino) {
+		// TODO Auto-generated method stub
+		CuentaBancaria ctaDestino = this.bancariaService.buscar(numberCtaDestino);
+		ctaDestino.setNumero(numberCtaDestino);
+		this.bancariaService.actualizar(ctaDestino);
+
+		return this.depositoRepository.buscar(numberCtaDestino);
+	}
+
+	@Override
+	public void actualizarDeposito(String numberCtaDestino, BigDecimal monto) {
+		// TODO Auto-generated method stub
+		CuentaBancaria ctaDestino = this.bancariaService.buscar(numberCtaDestino);
+		ctaDestino.setNumero(numberCtaDestino);
+		BigDecimal saldoCtaDestino = ctaDestino.getSaldo();
+		if (saldoCtaDestino != monto) {
+			BigDecimal saldoFinal = saldoCtaDestino.add(monto);
+			ctaDestino.setSaldo(saldoFinal);
+			this.bancariaService.actualizar(ctaDestino);
+		} else {
+			ctaDestino.setSaldo(saldoCtaDestino);
+			this.bancariaService.actualizar(ctaDestino);
+		}
+		Deposito deposito = new Deposito();
+		deposito.setNumeroCuentaDestino(numberCtaDestino);
+		deposito.setMonto(monto);
+		deposito.setFecha(LocalDateTime.now());
+		this.depositoRepository.actualizar(deposito);
+
+	}
+
+	@Override
+	public void eliminarDeposito(String numberCtaDestino) {
+		// TODO Auto-generated method stub
+		CuentaBancaria ctaDestino = new CuentaBancaria();
+		ctaDestino.setNumero(numberCtaDestino);
+		this.bancariaService.actualizar(ctaDestino);
+
+		Deposito deposito = new Deposito();
+		deposito.setNumeroCuentaDestino(numberCtaDestino);
+		deposito.setFecha(LocalDateTime.now());
+		this.depositoRepository.eliminar(deposito);
+	}
+
 }
