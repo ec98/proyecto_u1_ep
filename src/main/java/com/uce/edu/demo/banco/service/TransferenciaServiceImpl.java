@@ -92,6 +92,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 	public List<Transferencia> consultar(String cuenta, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
 		// TODO Auto-generated method stub
 		//solo llama al service
+		//No hay ninguna logica de negocio
 		return this.transferenciaRepository.consultar(cuenta, fechaInicio, fechaFin);
 	}
 
