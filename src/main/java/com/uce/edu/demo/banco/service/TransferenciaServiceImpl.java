@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.banco.modelo.CuentaBancaria;
@@ -21,6 +22,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 	// si puedo Inyectar el CuentaBancariaRepository
 
 	@Autowired
+	@Qualifier("ahorros")
 	private ICuentaBancariaService bancariaService;
 
 	@Autowired
