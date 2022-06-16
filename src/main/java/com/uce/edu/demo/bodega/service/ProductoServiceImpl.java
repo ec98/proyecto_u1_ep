@@ -7,12 +7,20 @@ import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.bodega.modelo.Producto;
 import com.uce.edu.demo.bodega.repository.IProductoRepository;
+import com.uce.edu.demo.refrigerador.Congelador;
+import com.uce.edu.demo.refrigerador.Fruta;
 
 @Service
 public class ProductoServiceImpl implements IProductoService{
 
 	@Autowired
 	private IProductoRepository iProductoRepository;
+	
+	@Autowired
+	private Congelador congelador;
+	
+	@Autowired
+	private Fruta fruta;
 	
 	@Override
 	public void ingresar(Producto p) {

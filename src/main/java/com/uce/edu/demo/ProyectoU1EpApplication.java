@@ -1,37 +1,43 @@
 package com.uce.edu.demo;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.modelo.Estudiante;
-import com.uce.edu.demo.modelo.Materia;
-import com.uce.edu.demo.modelo.Matricula;
+import com.uce.edu.demo.bodega.modelo.Producto;
+import com.uce.edu.demo.bodega.service.IProductoService;
 import com.uce.edu.demo.modelo.ProfesorGeneral;
 import com.uce.edu.demo.modelo.ProfesorMateria;
+import com.uce.edu.demo.refrigerador.Congelador;
+import com.uce.edu.demo.refrigerador.Fruta;
+import com.uce.edu.demo.refrigerador.Manzana;
+import com.uce.edu.demo.refrigerador.Pera;
 import com.uce.edu.demo.service.IMatriculaService;
 
 @SpringBootApplication
 public class ProyectoU1EpApplication implements CommandLineRunner {
 
 	@Autowired
-	private ProfesorGeneral general;
-	
-	@Autowired
-	private ProfesorGeneral general1;
+	private Congelador congelador;
 
 	@Autowired
-	private ProfesorMateria materia;
-	
+	private Congelador congelador1;
+
 	@Autowired
-	private ProfesorMateria materia1;
-	
+	private Congelador congelador2;
+
 	@Autowired
-	private IMatriculaService iMatriculaService;
-	
+	private Congelador congelador3;
+
+	@Autowired
+	private Fruta fruta;
+
+	@Autowired
+	private Fruta fruta1;
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1EpApplication.class, args);
 	}
@@ -39,32 +45,40 @@ public class ProyectoU1EpApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
-		System.out.println("EJEMPLO SINGLETON");
-		this.general.setNombre("Edwin");
-		this.general.setApellido("Piruch");
-		
-		System.out.println(this.general);
-		System.out.println("----");
-		System.out.println(this.general1); //toma la misma instancia
-		this.general1.setNombre("Carla"); //cambiando otro nombre
-		System.out.println("----");
-		System.out.println(this.general); //tomando el control despues del cambio
-		System.out.println(this.general1);
-		
-		System.out.println("EJEMPLO PROTOTYPE");
-		this.materia.setNombre("Maria");
-		this.materia.setApellido("Fernanda");
-		System.out.println(this.materia);
-		System.out.println("----");
-		System.out.println(this.materia1);
-		
-		Matricula matricula1 = new Matricula();
-		matricula1.setEstudiante(new Estudiante());
-		matricula1.setMateria(new ArrayList<Materia>());
-		matricula1.setNumero("123232");
-		
-		this.iMatriculaService.crearMatricula(matricula1);
-	}	
+
+		System.out.println("Realizando ejercicio tipo (PROTOTYPE) ");
+		this.congelador.setNombre("Queso");
+		this.congelador.setTipo("Lacteo");
+		System.out.println(this.congelador);
+		System.out.println("***********");
+		this.congelador1.setNombre("Yogurt");
+		this.congelador1.setTipo("Lacteo");
+		System.out.println(this.congelador1);
+		System.out.println("***********");
+		this.congelador2.setNombre("Carne");
+		this.congelador3.setNombre("Huevos");
+		System.out.println(this.congelador3);
+
+		System.out.println("Realizando ejercicio tipo (SINGLETON) ");
+		Manzana manzana1 = new Manzana();
+		Pera pera1 = new Pera();
+		manzana1.setTamanio("Grande");
+		this.fruta.setManzana(manzana1);
+
+		System.out.println(this.fruta);
+		System.out.println("***********");
+		manzana1.setTamanio("Pequeño");
+		this.fruta1.setManzana(manzana1);
+		System.out.println(this.fruta1);
+
+		pera1.setColor("Amarillo");
+		this.fruta1.setPera(pera1);
+		System.out.println(this.fruta1);
+
+		pera1.setColor("Verde");
+		this.fruta1.setPera(pera1);
+		System.out.println(this.fruta1);
+
+	}
 
 }

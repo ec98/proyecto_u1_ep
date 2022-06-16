@@ -1,4 +1,4 @@
-package com.uce.edu.demo.operaciones;
+package com.uce.edu.demo.refrigerador;
 
 import org.springframework.stereotype.Component;
 
@@ -8,6 +8,11 @@ public class Manzana {
 	private String tamanio;
 	private float peso;
 	private String color;
+
+	@Override
+	public String toString() {
+		return "Manzana [tamanio=" + tamanio + ", peso=" + peso + ", color=" + color + "]";
+	}
 
 	// GETTERS AND SETTERS
 

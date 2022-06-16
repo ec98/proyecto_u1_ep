@@ -1,4 +1,4 @@
-package com.uce.edu.demo.operaciones;
+package com.uce.edu.demo.refrigerador;
 
 import org.springframework.stereotype.Component;
 
@@ -7,6 +7,11 @@ public class Pera {
 
 	private float peso;
 	private String color;
+
+	@Override
+	public String toString() {
+		return "Pera [peso=" + peso + ", color=" + color + "]";
+	}
 
 	// GETTERS AND SETTERS
 	public float getPeso() {
