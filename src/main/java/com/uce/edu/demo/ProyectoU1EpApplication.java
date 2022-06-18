@@ -1,43 +1,28 @@
 package com.uce.edu.demo;
 
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.bodega.modelo.Producto;
-import com.uce.edu.demo.bodega.service.IProductoService;
+import com.uce.edu.demo.modelo.Estudiante;
+import com.uce.edu.demo.modelo.Matricula;
 import com.uce.edu.demo.modelo.ProfesorGeneral;
 import com.uce.edu.demo.modelo.ProfesorMateria;
-import com.uce.edu.demo.refrigerador.Congelador;
-import com.uce.edu.demo.refrigerador.Fruta;
-import com.uce.edu.demo.refrigerador.Manzana;
-import com.uce.edu.demo.refrigerador.Pera;
 import com.uce.edu.demo.service.IMatriculaService;
 
 @SpringBootApplication
 public class ProyectoU1EpApplication implements CommandLineRunner {
 
 	@Autowired
-	private Congelador congelador;
-
+	private ProfesorGeneral profesorGeneral;
+	
 	@Autowired
-	private Congelador congelador1;
-
+	private ProfesorMateria profesorMateria;
+	
 	@Autowired
-	private Congelador congelador2;
-
-	@Autowired
-	private Congelador congelador3;
-
-	@Autowired
-	private Fruta fruta;
-
-	@Autowired
-	private Fruta fruta1;
-
+	private IMatriculaService iMatriculaService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1EpApplication.class, args);
 	}
@@ -45,39 +30,23 @@ public class ProyectoU1EpApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+		
+		this.profesorGeneral.setNombre("Edwin");
+		this.profesorGeneral.setApellido("Piruch");
+		
+		System.out.println(this.profesorGeneral);
 
-		System.out.println("Realizando ejercicio tipo (PROTOTYPE) ");
-		this.congelador.setNombre("Queso");
-		this.congelador.setTipo("Lacteo");
-		System.out.println(this.congelador);
-		System.out.println("***********");
-		this.congelador1.setNombre("Yogurt");
-		this.congelador1.setTipo("Lacteo");
-		System.out.println(this.congelador1);
-		System.out.println("***********");
-		this.congelador2.setNombre("Carne");
-		this.congelador3.setNombre("Huevos");
-		System.out.println(this.congelador3);
-
-		System.out.println("Realizando ejercicio tipo (SINGLETON) ");
-		Manzana manzana1 = new Manzana();
-		Pera pera1 = new Pera();
-		manzana1.setTamanio("Grande");
-		this.fruta.setManzana(manzana1);
-
-		System.out.println(this.fruta);
-		System.out.println("***********");
-		manzana1.setTamanio("Pequeño");
-		this.fruta1.setManzana(manzana1);
-		System.out.println(this.fruta1);
-
-		pera1.setColor("Amarillo");
-		this.fruta1.setPera(pera1);
-		System.out.println(this.fruta1);
-
-		pera1.setColor("Verde");
-		this.fruta1.setPera(pera1);
-		System.out.println(this.fruta1);
+		this.profesorMateria.setNombre("Carla");
+		this.profesorMateria.setApellido("Manta");
+		System.out.println(this.profesorMateria);
+		
+		Matricula m1 = new Matricula();
+		m1.setEstudiante(new Estudiante());
+		//m1.setMateria(new ArrayList<Materia>);
+		m1.setNumero("23");
+		
+		this.iMatriculaService.crearMatricula(m1);
+		System.out.println(this.iMatriculaService);
 
 	}
 
